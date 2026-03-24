@@ -8,10 +8,11 @@ export async function getAuthSession() {
 
 export async function requireAuth() {
   const result = await getAuthSession()
+  console.log(result)
 
   if (!result.data?.session) {
     throw redirect({
-      href: '/login',
+      href: '/sign-in',
     })
   }
 

@@ -5,8 +5,7 @@ import * as z from 'zod'
 
 export const env = createEnv({
   server: {
-    SERVER_URL: z.url(),
-    SERVER_KEY: z.string().min(10),
+    // No server-side environment variables needed
   },
 
   /**
@@ -16,6 +15,8 @@ export const env = createEnv({
   clientPrefix: 'PUBLIC_',
 
   client: {
+    PUBLIC_SERVER_URL: z.url(),
+    PUBLIC_CLIENT_URL: z.url(),
     PUBLIC_APP_NAME: z.string().min(1),
   },
 
@@ -24,12 +25,10 @@ export const env = createEnv({
    * `process.env` or `import.meta.env`.
    */
   runtimeEnv: {
-    // Server
-    SERVER_URL: process.env.SERVER_URL,
-    SERVER_KEY: process.env.SERVER_KEY,
-
     // Client:
     PUBLIC_APP_NAME: import.meta.env.PUBLIC_APP_NAME,
+    PUBLIC_SERVER_URL: import.meta.env.PUBLIC_SERVER_URL,
+    PUBLIC_CLIENT_URL: import.meta.env.PUBLIC_CLIENT_URL,
   },
 
   /**

@@ -9,50 +9,154 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as protectedRouteRouteImport } from './routes/(protected)/route'
+import { Route as protectedDashboardIndexRouteImport } from './routes/(protected)/dashboard/index'
+import { Route as publicsiteTermsIndexRouteImport } from './routes/(public)/(site)/terms/index'
+import { Route as publicsitePrivacyIndexRouteImport } from './routes/(public)/(site)/privacy/index'
+import { Route as publicsitehomeIndexRouteImport } from './routes/(public)/(site)/(home)/index'
+import { Route as publicauthSignInIndexRouteImport } from './routes/(public)/(auth)/sign-in/index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const protectedRouteRoute = protectedRouteRouteImport.update({
+  id: '/(protected)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const protectedDashboardIndexRoute = protectedDashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => protectedRouteRoute,
+} as any)
+const publicsiteTermsIndexRoute = publicsiteTermsIndexRouteImport.update({
+  id: '/(public)/(site)/terms/',
+  path: '/terms/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicsitePrivacyIndexRoute = publicsitePrivacyIndexRouteImport.update({
+  id: '/(public)/(site)/privacy/',
+  path: '/privacy/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicsitehomeIndexRoute = publicsitehomeIndexRouteImport.update({
+  id: '/(public)/(site)/(home)/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicauthSignInIndexRoute = publicauthSignInIndexRouteImport.update({
+  id: '/(public)/(auth)/sign-in/',
+  path: '/sign-in/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/dashboard/': typeof protectedDashboardIndexRoute
+  '/sign-in/': typeof publicauthSignInIndexRoute
+  '/': typeof publicsitehomeIndexRoute
+  '/privacy/': typeof publicsitePrivacyIndexRoute
+  '/terms/': typeof publicsiteTermsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/dashboard': typeof protectedDashboardIndexRoute
+  '/sign-in': typeof publicauthSignInIndexRoute
+  '/': typeof publicsitehomeIndexRoute
+  '/privacy': typeof publicsitePrivacyIndexRoute
+  '/terms': typeof publicsiteTermsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/(protected)': typeof protectedRouteRouteWithChildren
+  '/(protected)/dashboard/': typeof protectedDashboardIndexRoute
+  '/(public)/(auth)/sign-in/': typeof publicauthSignInIndexRoute
+  '/(public)/(site)/(home)/': typeof publicsitehomeIndexRoute
+  '/(public)/(site)/privacy/': typeof publicsitePrivacyIndexRoute
+  '/(public)/(site)/terms/': typeof publicsiteTermsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/dashboard/' | '/sign-in/' | '/' | '/privacy/' | '/terms/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/dashboard' | '/sign-in' | '/' | '/privacy' | '/terms'
+  id:
+    | '__root__'
+    | '/(protected)'
+    | '/(protected)/dashboard/'
+    | '/(public)/(auth)/sign-in/'
+    | '/(public)/(site)/(home)/'
+    | '/(public)/(site)/privacy/'
+    | '/(public)/(site)/terms/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  protectedRouteRoute: typeof protectedRouteRouteWithChildren
+  publicauthSignInIndexRoute: typeof publicauthSignInIndexRoute
+  publicsitehomeIndexRoute: typeof publicsitehomeIndexRoute
+  publicsitePrivacyIndexRoute: typeof publicsitePrivacyIndexRoute
+  publicsiteTermsIndexRoute: typeof publicsiteTermsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/(protected)': {
+      id: '/(protected)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof protectedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(protected)/dashboard/': {
+      id: '/(protected)/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof protectedDashboardIndexRouteImport
+      parentRoute: typeof protectedRouteRoute
+    }
+    '/(public)/(site)/terms/': {
+      id: '/(public)/(site)/terms/'
+      path: '/terms'
+      fullPath: '/terms/'
+      preLoaderRoute: typeof publicsiteTermsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/(site)/privacy/': {
+      id: '/(public)/(site)/privacy/'
+      path: '/privacy'
+      fullPath: '/privacy/'
+      preLoaderRoute: typeof publicsitePrivacyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/(site)/(home)/': {
+      id: '/(public)/(site)/(home)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof publicsitehomeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/(auth)/sign-in/': {
+      id: '/(public)/(auth)/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in/'
+      preLoaderRoute: typeof publicauthSignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
+interface protectedRouteRouteChildren {
+  protectedDashboardIndexRoute: typeof protectedDashboardIndexRoute
+}
+
+const protectedRouteRouteChildren: protectedRouteRouteChildren = {
+  protectedDashboardIndexRoute: protectedDashboardIndexRoute,
+}
+
+const protectedRouteRouteWithChildren = protectedRouteRoute._addFileChildren(
+  protectedRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  protectedRouteRoute: protectedRouteRouteWithChildren,
+  publicauthSignInIndexRoute: publicauthSignInIndexRoute,
+  publicsitehomeIndexRoute: publicsitehomeIndexRoute,
+  publicsitePrivacyIndexRoute: publicsitePrivacyIndexRoute,
+  publicsiteTermsIndexRoute: publicsiteTermsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

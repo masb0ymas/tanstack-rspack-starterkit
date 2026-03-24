@@ -29,6 +29,8 @@ export const env = createEnv({
     SERVER_URL: z.string().url(),
     SERVER_KEY: z.string().min(10),
     CLIENT_URL: z.string().url(),
+    GOOGLE_CLIENT_ID: z.string().min(1),
+    GOOGLE_CLIENT_SECRET: z.string().min(1),
   },
 
   /**
@@ -40,7 +42,11 @@ export const env = createEnv({
     SERVER_PORT: process.env.SERVER_PORT,
     SERVER_URL: process.env.SERVER_URL,
     SERVER_KEY: process.env.SERVER_KEY,
+
     CLIENT_URL: process.env.CLIENT_URL,
+
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   },
 
   /**
