@@ -1,0 +1,29 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.exclude": {
+    "dist-server/": true,
+    "node_modules/": true,
+    "dist/": true,
+    ".idea/": true,
+    ".tanstack/": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true,
+    "dist-server/": true,
+    "node_modules/": true,
+    "dist/": true,
+    ".idea/": true,
+    ".tanstack/": true
+  }
+}
