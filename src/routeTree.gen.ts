@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as protectedRouteRouteImport } from './routes/(protected)/route'
+import { Route as publicauthRouteRouteImport } from './routes/(public)/(auth)/route'
 import { Route as protectedDashboardIndexRouteImport } from './routes/(protected)/dashboard/index'
 import { Route as publicsiteTermsIndexRouteImport } from './routes/(public)/(site)/terms/index'
 import { Route as publicsitePrivacyIndexRouteImport } from './routes/(public)/(site)/privacy/index'
@@ -18,6 +19,10 @@ import { Route as publicauthSignInIndexRouteImport } from './routes/(public)/(au
 
 const protectedRouteRoute = protectedRouteRouteImport.update({
   id: '/(protected)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicauthRouteRoute = publicauthRouteRouteImport.update({
+  id: '/(public)/(auth)',
   getParentRoute: () => rootRouteImport,
 } as any)
 const protectedDashboardIndexRoute = protectedDashboardIndexRouteImport.update({
@@ -41,9 +46,9 @@ const publicsitehomeIndexRoute = publicsitehomeIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const publicauthSignInIndexRoute = publicauthSignInIndexRouteImport.update({
-  id: '/(public)/(auth)/sign-in/',
+  id: '/sign-in/',
   path: '/sign-in/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => publicauthRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -63,6 +68,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(protected)': typeof protectedRouteRouteWithChildren
+  '/(public)/(auth)': typeof publicauthRouteRouteWithChildren
   '/(protected)/dashboard/': typeof protectedDashboardIndexRoute
   '/(public)/(auth)/sign-in/': typeof publicauthSignInIndexRoute
   '/(public)/(site)/(home)/': typeof publicsitehomeIndexRoute
@@ -77,6 +83,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/(protected)'
+    | '/(public)/(auth)'
     | '/(protected)/dashboard/'
     | '/(public)/(auth)/sign-in/'
     | '/(public)/(site)/(home)/'
@@ -86,7 +93,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   protectedRouteRoute: typeof protectedRouteRouteWithChildren
-  publicauthSignInIndexRoute: typeof publicauthSignInIndexRoute
+  publicauthRouteRoute: typeof publicauthRouteRouteWithChildren
   publicsitehomeIndexRoute: typeof publicsitehomeIndexRoute
   publicsitePrivacyIndexRoute: typeof publicsitePrivacyIndexRoute
   publicsiteTermsIndexRoute: typeof publicsiteTermsIndexRoute
@@ -99,6 +106,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof protectedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/(auth)': {
+      id: '/(public)/(auth)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof publicauthRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(protected)/dashboard/': {
@@ -134,7 +148,7 @@ declare module '@tanstack/react-router' {
       path: '/sign-in'
       fullPath: '/sign-in/'
       preLoaderRoute: typeof publicauthSignInIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof publicauthRouteRoute
     }
   }
 }
@@ -151,9 +165,21 @@ const protectedRouteRouteWithChildren = protectedRouteRoute._addFileChildren(
   protectedRouteRouteChildren,
 )
 
+interface publicauthRouteRouteChildren {
+  publicauthSignInIndexRoute: typeof publicauthSignInIndexRoute
+}
+
+const publicauthRouteRouteChildren: publicauthRouteRouteChildren = {
+  publicauthSignInIndexRoute: publicauthSignInIndexRoute,
+}
+
+const publicauthRouteRouteWithChildren = publicauthRouteRoute._addFileChildren(
+  publicauthRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   protectedRouteRoute: protectedRouteRouteWithChildren,
-  publicauthSignInIndexRoute: publicauthSignInIndexRoute,
+  publicauthRouteRoute: publicauthRouteRouteWithChildren,
   publicsitehomeIndexRoute: publicsitehomeIndexRoute,
   publicsitePrivacyIndexRoute: publicsitePrivacyIndexRoute,
   publicsiteTermsIndexRoute: publicsiteTermsIndexRoute,
