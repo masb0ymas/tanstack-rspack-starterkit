@@ -12,7 +12,7 @@
     "build:server": "tsc -p tsconfig.server.json",
     "start:server": "node dist-server/index.js",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "check": "bun run format && bun run lint",
     "preview": "rsbuild preview",
     "test": "rstest",

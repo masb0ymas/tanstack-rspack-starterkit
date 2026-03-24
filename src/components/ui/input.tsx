@@ -1,6 +1,7 @@
-import * as React from 'react'
-import { cn } from '~/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
+import * as React from 'react'
+
+import { cn } from '~/lib/utils'
 
 // Define input size variants
 const inputVariants = cva(
@@ -176,4 +177,4 @@ function InputWrapper({
   )
 }
 
-export { Input, InputAddon, InputGroup, InputWrapper, inputVariants, inputAddonVariants }
+export { Input, InputAddon, inputAddonVariants, InputGroup, inputVariants, InputWrapper }
