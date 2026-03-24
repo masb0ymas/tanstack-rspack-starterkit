@@ -1,0 +1,1 @@
+{"version":3,"file":"colorize.js","sourceRoot":"","sources":["../../server/lib/colorize.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,WAAW,CAAA;AAEhC,MAAM,CAAC,MAAM,SAAS,GAAG,CAAC,IAAY,EAAE,OAAe,EAAE,EAAE;IACzD,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,GAAG,EAAE,OAAO,CAAC,CAAA;AACvC,CAAC,CAAA"}
