@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export { }
+export {}
 
 /**
  * Imports the SVG file as a React component.
