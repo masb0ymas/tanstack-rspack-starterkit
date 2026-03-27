@@ -3,6 +3,7 @@
 declare global {
   interface ImportMetaEnv {
     readonly PUBLIC_SERVER_URL?: string
+    readonly PUBLIC_CLIENT_URL?: string
     readonly PUBLIC_APP_NAME?: string
   }
 
