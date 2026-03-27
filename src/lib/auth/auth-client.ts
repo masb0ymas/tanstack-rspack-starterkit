@@ -12,9 +12,12 @@ export const authClient = createAuthClient({
 })
 
 export const signInWithGoogle = () => {
+  const ENV_PROD = process.env.NODE_ENV === 'production'
+  const callbackURL = ENV_PROD ? '/dashboard' : `${env.PUBLIC_CLIENT_URL}/dashboard`
+
   return authClient.signIn.social({
     provider: AUTH_PROVIDERS.GOOGLE,
-    callbackURL: `${env.PUBLIC_CLIENT_URL}/dashboard`,
+    callbackURL,
   })
 }
 

@@ -1,34 +1,17 @@
-import { existsSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
-import { loadEnvFile } from 'node:process'
-import { fileURLToPath } from 'node:url'
+import 'dotenv/config'
 
 import { createEnv } from '@t3-oss/env-core'
 import { z } from 'zod'
 
-const configDir = dirname(fileURLToPath(import.meta.url))
-const projectRoot = resolve(configDir, '..', '..')
-const nodeEnv = process.env.NODE_ENV ?? 'development'
-
-const envFiles = [
-  resolve(projectRoot, '.env'),
-  resolve(projectRoot, `.env.${nodeEnv}`),
-  resolve(projectRoot, '.env.local'),
-  resolve(projectRoot, `.env.${nodeEnv}.local`),
-]
-
-for (const envFile of envFiles) {
-  if (existsSync(envFile)) {
-    loadEnvFile(envFile)
-  }
-}
-
 export const env = createEnv({
   server: {
-    SERVER_PORT: z.coerce.number().int().positive(),
-    SERVER_URL: z.string().url(),
-    SERVER_KEY: z.string().min(10),
+    PORT: z.coerce.number().int().positive(),
+
+    BETTER_AUTH_URL: z.string().url(),
+    BETTER_AUTH_SECRET: z.string().min(10),
+
     CLIENT_URL: z.string().url(),
+
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
   },
@@ -39,9 +22,10 @@ export const env = createEnv({
    */
   runtimeEnv: {
     // Server
-    SERVER_PORT: process.env.SERVER_PORT,
-    SERVER_URL: process.env.SERVER_URL,
-    SERVER_KEY: process.env.SERVER_KEY,
+    PORT: process.env.PORT,
+
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
 
     CLIENT_URL: process.env.CLIENT_URL,
 

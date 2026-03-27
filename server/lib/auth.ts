@@ -3,8 +3,8 @@ import { betterAuth } from 'better-auth'
 import { env } from '../config/env'
 
 export const auth = betterAuth({
-  baseURL: env.SERVER_URL,
-  secret: env.SERVER_KEY,
+  baseURL: env.BETTER_AUTH_URL,
+  secret: env.BETTER_AUTH_SECRET,
   trustedOrigins: [env.CLIENT_URL],
   emailAndPassword: {
     enabled: true,
