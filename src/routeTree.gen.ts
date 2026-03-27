@@ -162,7 +162,7 @@ const protectedRouteRouteChildren: protectedRouteRouteChildren = {
 }
 
 const protectedRouteRouteWithChildren = protectedRouteRoute._addFileChildren(
-  protectedRouteRouteChildren
+  protectedRouteRouteChildren,
 )
 
 interface publicauthRouteRouteChildren {
@@ -174,7 +174,7 @@ const publicauthRouteRouteChildren: publicauthRouteRouteChildren = {
 }
 
 const publicauthRouteRouteWithChildren = publicauthRouteRoute._addFileChildren(
-  publicauthRouteRouteChildren
+  publicauthRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {

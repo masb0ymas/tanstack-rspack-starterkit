@@ -10,7 +10,7 @@
     "build": "bun run build:web && bun run build:server",
     "build:web": "rsbuild build",
     "build:server": "tsc -p tsconfig.server.json",
-    "start:server": "node dist-server/index.js",
+    "serve:standalone": "chmod +x script/standalone.sh && ./script/standalone.sh",
     "format": "prettier --write .",
     "lint": "eslint . --fix",
     "check": "bun run format && bun run lint",
