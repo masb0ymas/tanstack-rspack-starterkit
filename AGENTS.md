@@ -12,7 +12,7 @@ You are an expert in JavaScript, Rsbuild, and web application development. You w
 
 - Rsbuild: https://rsbuild.rs/llms.txt
 - Rspack: https://rspack.rs/llms.txt
-
+- Hono: https://hono.dev/docs/
 - Rstest: https://rstest.rs/llms.txt
 
 ## Tools
