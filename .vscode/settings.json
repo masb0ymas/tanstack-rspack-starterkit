@@ -13,6 +13,7 @@
   },
   "files.exclude": {
     "dist-server/": true,
+    "client/": true,
     "node_modules/": true,
     "dist/": true,
     ".idea/": true,
@@ -21,6 +22,7 @@
   "search.exclude": {
     "**/routeTree.gen.ts": true,
     "dist-server/": true,
+    "client/": true,
     "node_modules/": true,
     "dist/": true,
     ".idea/": true,

@@ -2,18 +2,36 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2022"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "rootDir": "server",
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./server/*"]
+    },
     "outDir": "dist-server",
     "types": ["node"],
+
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
     "strict": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "sourceMap": true
+    "sourceMap": false,
+    "removeComments": true
   },
-  "include": ["server/**/*.ts"]
+  "tsc-alias": {
+    "verbose": false,
+    "resolveFullPaths": true
+  },
+  "include": ["server/**/*.ts"],
+  "exclude": [".output", "node_modules", "dist-server"]
 }

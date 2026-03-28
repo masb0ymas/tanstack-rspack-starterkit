@@ -6,7 +6,13 @@
 # Dist
 node_modules
 dist/
+client
+.output/
 dist-server/
+
+# Server compiled files
+server/**/*.js
+server/**/*.d.ts
 
 # Profile
 .rspack-profile-*/

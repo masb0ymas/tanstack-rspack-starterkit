@@ -21,7 +21,7 @@ const ENV_PROD = process.env.NODE_ENV === 'production'
 
 // Resolve frontend build directory
 const currentDir = dirname(fileURLToPath(import.meta.url))
-const distPath = resolve(currentDir, '..', 'dist')
+const distPath = resolve(currentDir, '..', 'client')
 const hasStaticFiles = existsSync(distPath)
 
 app.use('*', logger())

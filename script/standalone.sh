@@ -8,19 +8,18 @@ bun install --frozen-lockfile
 bun run build:web
 bun run build:server
 
-# Create app directory
-mkdir -p app
+# Create .output directory
+mkdir -p .output
 
-# Copy dist files to app
-cp -r dist/ app/dist/
-cp -r dist-server/ app/dist-server/
-cp package.json app/
-cp .env.production app/.env
+# Copy dist files to .output
+cp -r client/ .output/client/
+cp -r dist-server/ .output/server/
+cp package.json .output/
+cp .env.production .output/.env
 
-# Install production dependencies only in app directory
-cd app
+# Install production dependencies only in .output directory
+cd .output
 bun install --frozen-lockfile --production
-cd ..
 
 # Start the server
-node app/dist-server/index.js
+bun run server/index.js

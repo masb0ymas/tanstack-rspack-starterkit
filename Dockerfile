@@ -32,8 +32,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Copy built artifacts
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/dist-server ./dist-server
+COPY --from=builder /app/client ./client
+COPY --from=builder /app/dist-server ./server
 
 # Copy production dependencies only
 COPY --from=deps /app/node_modules ./node_modules
@@ -42,4 +42,4 @@ COPY --from=builder /app/.env ./
 
 EXPOSE 3000
 
-CMD ["bun", "run", "dist-server/index.js"]
+CMD ["bun", "run", "server/index.js"]
