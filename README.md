@@ -164,6 +164,18 @@ bun run test:watch     # Run tests in watch mode
 
 Build and run with Docker:
 
+You need to adjust the `.env` for production with Docker:
+
+```bash
+PORT=3000
+
+BETTER_AUTH_URL=https://your-domain.com
+
+CLIENT_URL=https://your-domain.com
+```
+
+And then run this:
+
 ```bash
 docker build -t tanstack-rspack-app .
 docker run -p 3000:3000 tanstack-rspack-app
