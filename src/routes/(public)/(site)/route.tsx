@@ -1,14 +1,15 @@
-import { createFileRoute, ErrorComponent } from '@tanstack/react-router'
+import { createFileRoute, ErrorComponent, Outlet } from '@tanstack/react-router'
 
+import Loading from '~/components/block/common/loading'
 import NotFound from '~/components/block/common/not-found'
 
 export const Route = createFileRoute('/(public)/(site)')({
   component: RouteComponent,
-  pendingComponent: () => <div>Loading...</div>,
+  pendingComponent: Loading,
   notFoundComponent: NotFound,
   errorComponent: ErrorComponent,
 })
 
 function RouteComponent() {
-  return <div>Hello "/(public)/(site)"!</div>
+  return <Outlet />
 }
