@@ -6,9 +6,9 @@ export const Route = createFileRoute('/(public)/(site)/(home)/')({
 
 function RouteComponent() {
   return (
-    <div>
-      <h1>Rsbuild with React</h1>
-      <p>Start building amazing things with Rsbuild.</p>
+    <div className="flex h-screen flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold">Tanstack Router + RSPack + Hono.js</h1>
+      <p className="mt-2 text-lg">Start building amazing things with RSPack.</p>
     </div>
   )
 }
